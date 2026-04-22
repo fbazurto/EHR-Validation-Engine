@@ -1,0 +1,49 @@
+{
+    "resourceType": "Bundle",
+    "id": "3fbf4ace-78ff-4c59-aa06-00757c06fb6d",
+    "meta": {
+        "lastUpdated": "2026-04-22T03:51:19.809+00:00"
+    },
+    "type": "searchset",
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://hapi.fhir.org/baseR4/Patient?_count=1"
+        },
+        {
+            "relation": "next",
+            "url": "https://hapi.fhir.org/baseR4?_getpages=3fbf4ace-78ff-4c59-aa06-00757c06fb6d&_getpagesoffset=1&_count=1&_pretty=true&_bundletype=searchset"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/90270587",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "90270587",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-02-09T18:36:41.642+00:00",
+                    "source": "#TGA68OVVF6gisl3w"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">NuÃ±ez <b>KARLA </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Date of birth</td><td><span>02 January 1980</span></td></tr></tbody></table></div>"
+                },
+                "name": [
+                    {
+                        "family": "Karla",
+                        "given": [
+                            "NuÃ±ez"
+                        ]
+                    }
+                ],
+                "gender": "female",
+                "birthDate": "1980-01-02"
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}
