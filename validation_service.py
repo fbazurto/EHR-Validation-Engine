@@ -91,3 +91,25 @@ class ValidationService:
         }
         self._log_event(field, value, age, sex, result)
         return result
+    
+    def _log_event(self, field, value, age, sex, result):
+        """
+        Inserts a row into validation_events table every time a validation runs.
+        This data feeds the Feature 5 dashboard later.
+        """
+        with engine.connect() as conn:
+            conn.execute(text("""
+                INSERT INTO validation_events 
+                (field_name, value, age, sex, rule_severity, message)
+                VALUES (:field, :value, :age, :sex, :severity, :message)
+            """), {
+                # Map each column to the corresponding value
+                "field": field,
+                "value": value,
+                "age": age,
+                "sex": sex,
+                "severity": result["severity"],
+                "message": result["message"]
+            })
+            # Commit the insert so it actually saves to the database
+            conn.commit()
