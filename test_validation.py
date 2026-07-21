@@ -52,3 +52,7 @@ def test_unknown_field():
     result = vs.validate_vital("glucose", 100, 45, "F")
     assert result["severity"] == "unknown"
     assert result["valid"] == False
+
+# to install pytest: venv\Scripts\python.exe -m pip install pytest pymysql sqlalchemy python-dotenv
+# to test: open connection to ehr database 
+# and run:  venv\Scripts\python.exe -m pytest test_validation.py -v
