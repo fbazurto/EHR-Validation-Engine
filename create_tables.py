@@ -24,3 +24,24 @@ with engine.connect() as conn:
     """))
     conn.commit()
     print("reference_ranges table created successfully")
+
+    # age_min and age_max are in years. A value of 0 represents patients under 1 year of age.
+
+# Create the validation_events table to log every validation call
+# This data will feed the Feature 5 dashboard later
+with engine.connect() as conn:
+    conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS validation_events (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            field_name VARCHAR(50),
+            value FLOAT,
+            age INT,
+            sex VARCHAR(10),
+            rule_severity VARCHAR(20),
+            message TEXT,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    """))
+    conn.commit()
+    print("validation_events table created successfully")
+    # to run: venv\Scripts\python.exe create_tables.py
