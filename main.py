@@ -1,4 +1,7 @@
-from fastapi import FastAPI
+import importlib
+
+fastapi = importlib.import_module("fastapi")
+FastAPI = fastapi.FastAPI
 
 app = FastAPI()
 
