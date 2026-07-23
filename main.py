@@ -47,7 +47,8 @@ def validate_vitals(request: VitalSignRequest):
 # To start the server: venv\Scripts\python.exe -m uvicorn main:app --reload
 # Then go to http://127.0.0.1:8000/docs in your browser.
 # Should see the /validate/vitals endpoint listed there.
-# Click it, click Try it out, and test these three cases:
+# Click it, click Try it out, and test these three cases separately
+# The /docs page only accepts one JSON object at a time:
 
 # Normal: {"field": "systolic_bp", "value": 115, "age": 45, "sex": "F"}
 
@@ -55,3 +56,32 @@ def validate_vitals(request: VitalSignRequest):
 
 # Critical: {"field": "systolic_bp", "value": 225, "age": 45, "sex": "F"}
 
+
+# Add the new endpoint:
+# Import the FHIR parser
+from fhir_parser import parse_observation
+
+# POST /validate/fhir-observation — accepts a raw FHIR Observation JSON
+# Extracts field, value, age, and sex then runs through ValidationService
+@app.post("/validate/fhir-observation")
+def validate_fhir_observation(observation: dict):
+    """
+    Accepts a raw FHIR Observation resource.
+    Parses it, looks up the patient, and returns a validation result.
+    """
+    # Parse the FHIR Observation to extract validation inputs
+    parsed = parse_observation(observation)
+
+    # If parsing failed, return the error
+    if "error" in parsed:
+        return parsed
+
+    # Run the parsed values through ValidationService
+    result = validation_service.validate_vital(
+        field=parsed["field"],
+        value=parsed["value"],
+        age=parsed["age"],
+        sex=parsed["sex"]
+    )
+
+    return result
