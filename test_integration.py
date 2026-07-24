@@ -17,7 +17,7 @@ def test_fhir_observation_critical():
 
     # Step 1 — create a fake patient in HAPI FHIR
     patient = {
-        "resourceType": "Patient",
+        "resourceType": "Patient"
         "gender": "female",
         "birthDate": "1979-01-01"
     }
