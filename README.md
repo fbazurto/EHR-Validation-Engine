@@ -12,7 +12,7 @@ The system accepts two input formats:
 
 Every validation call is logged to a database for later analysis by a clinical informatics administrator through a dashboard.
 
-## Features
+## Feature
 
 | Feature | Description |
 |---------|-------------|
