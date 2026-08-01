@@ -54,3 +54,7 @@ Every validation call is logged to a database for later analysis by a clinical i
 
 ### Environment Variables
 Create a `.env` file in the project root with the following:
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_HOST=your_database_host
+DB_NAME=ehr_validation
